@@ -1,110 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="moq.rs" />
+        <link rel="icon" href="./res/moq-rs.ico" />
+        <link rel="stylesheet" href="./res/all.css" />
+        <link rel="stylesheet" href="./res/bulma.min.css" />
+        <link rel="stylesheet" type="text/css" href="./res/notie.min.css" />
+        <style>
+            text {
+                font: 12px sans-serif;
+            }
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="moq.rs">
-  <link rel="icon" href="./res/moq-rs.ico">
-  <link rel="stylesheet" href="./res/all.css">
-  <link rel="stylesheet" href="./res/bulma.min.css">
-  <link rel="stylesheet" type="text/css" href="./res/notie.min.css">
-  <style>
-    text {
-      font: 12px sans-serif
-    }
+            #chart,
+            svg {
+                display: block;
+            }
 
-    #chart,
-    svg {
-      display: block
-    }
+            #chart {
+                margin: auto;
+                padding: 10px;
+                max-width: 800px;
+                min-width: 70%;
+            }
 
-    #chart {
-      margin: auto;
-      padding: 10px;
-      max-width: 800px;
-      min-width: 70%
-    }
+            #button-group,
+            #chart {
+                visibility: hidden;
+            }
 
-    #button-group,
-    #chart {
-      visibility: hidden
-    }
+            .search-container {
+                min-width: 70%;
+                max-width: 800px;
+                display: inline-block;
+            }
+        </style>
+        <title>moq.rs</title>
+    </head>
 
-    .search-container {
-      min-width: 70%;
-      max-width: 800px;
-      display: inline-block
-    }
-  </style>
-  <title>moq.rs</title>
-</head>
-
-<body>
-  <nav class="navbar is-dark" style="z-index:1">
-    <div class="container">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://moq.rs/"><img src="./res/moq-rs.png" width="28" height="28"></a>
-        <a class="navbar-item" href="http://github.com/moq-rs/moqt"><strong>Github</strong></a>
-      </div>
-    </div>
-  </nav>
-  <dev class="section">
-    <div class="container has-text-centered">
-      <article class="message is-success" id="discount-message">
-        <img src="./res/moq-rs.png">
-        <div class="message-header"></div>
-        <div class="message-body">
-          <p>
-            <a href="https://github.com/moq-rs/moqt/actions"><img
-                src="https://github.com/moq-rs/moqt/workflows/cargo/badge.svg"></a>
-            <a
-              href="https://codecov.io/gh/moq-rs/moqt"><img
-                src="https://codecov.io/gh/moq-rs/moqt/branch/master/graph/badge.svg"></a>
-            <a
-              href="https://deps.rs/repo/github/moq-rs/moqt"><img
-                src="https://deps.rs/repo/github/moq-rs/moqt/status.svg"></a>
-            <a
-              href="https://crates.io/crates/moqt"><img src="https://img.shields.io/crates/v/moqt.svg"></a>
-            <a
-              href="https://docs.rs/moqt"><img src="https://docs.rs/moqt/badge.svg"></a>
-            <a
-              href="https://doc.rust-lang.org/1.6.0/complement-project-faq.html#why-dual-mitasl2-license"><img 
-                src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue" alt="License: MIT/Apache 2.0"></a>
-            <a href="https://github.com/moq-rs/moqt"><img
-                src="https://img.shields.io/github/watchers/moq-rs/moqt.svg?style=social&label=Watch"
-                alt="Github Watches"></a>
-            <a
-              href="https://seladb.github.io/StarTrack-js/#/preload?r=moq-rs,moqt"><img
-                src="https://img.shields.io/github/stars/moq-rs/moqt.svg?style=social&label=Star"
-                alt="Github Stars"></a>
-            <a href="https://github.com/moq-rs/moqt"><img
-                src="https://img.shields.io/github/forks/moq-rs/moqt.svg?style=social&label=Fork"
-                alt="Github Forks"></a>
-          </p>
-          <br>
-          <p>
-            Media over QUIC in Rust!
-          </p>
+    <body>
+        <nav class="navbar is-dark" style="z-index: 1">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="https://moq.rs/"
+                        ><img src="./res/moq-rs.png" width="28" height="28"
+                    /></a>
+                    <a class="navbar-item" href="http://github.com/moq-rs/moq"
+                        ><strong>Github</strong></a
+                    >
+                </div>
+            </div>
+        </nav>
+        <dev class="section">
+            <div class="container has-text-centered">
+                <article class="message is-success" id="discount-message">
+                    <img src="./res/moq-rs.png" />
+                    <div class="message-header"></div>
+                    <div class="message-body">
+                        <p>
+                            <a href="https://github.com/moq-rs/moq/actions"
+                                ><img
+                                    src="https://github.com/moq-rs/moq/workflows/cargo/badge.svg"
+                            /></a>
+                            <a href="https://deps.rs/repo/github/moq-rs/moq"
+                                ><img
+                                    src="https://deps.rs/repo/github/moq-rs/moq/status.svg"
+                            /></a>
+                            <a
+                                href="https://doc.rust-lang.org/1.6.0/complement-project-faq.html#why-dual-mitasl2-license"
+                                ><img
+                                    src="https://img.shields.io/badge/license-MIT%2FApache--2.0-blue"
+                                    alt="License: MIT/Apache 2.0"
+                            /></a>
+                            <a href="https://github.com/moq-rs/moq"
+                                ><img
+                                    src="https://img.shields.io/github/watchers/moq-rs/moq.svg?style=social&label=Watch"
+                                    alt="Github Watches"
+                            /></a>
+                            <a
+                                href="https://seladb.github.io/StarTrack-js/#/preload?r=moq-rs,moq"
+                                ><img
+                                    src="https://img.shields.io/github/stars/moq-rs/moq.svg?style=social&label=Star"
+                                    alt="Github Stars"
+                            /></a>
+                            <a href="https://github.com/moq-rs/moq"
+                                ><img
+                                    src="https://img.shields.io/github/forks/moq-rs/moq.svg?style=social&label=Fork"
+                                    alt="Github Forks"
+                            /></a>
+                        </p>
+                        <br />
+                        <p>Media over QUIC in Rust!</p>
+                        <br />
+                        <p>
+                            <input
+                                type="checkbox"
+                                id="moqp"
+                                name="moqp"
+                                disabled="disabled"
+                            /><label for="moqp"
+                                >MoQ-Publish &nbsp;&nbsp;&nbsp;</label
+                            >
+                            <a href="https://crates.io/crates/moqp"
+                                ><img
+                                    src="https://img.shields.io/crates/v/moqp.svg" /></a
+                            ><br />
+                            <input
+                                type="checkbox"
+                                id="moqr"
+                                name="moqr"
+                                disabled="disabled"
+                            /><label for="moqp"
+                                >MoQ-Relay
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label
+                            >
+                            <a href="https://crates.io/crates/moqr"
+                                ><img
+                                    src="https://img.shields.io/crates/v/moqr.svg" /></a
+                            ><br />
+                            <input
+                                type="checkbox"
+                                id="moqs"
+                                name="moqs"
+                                disabled="disabled"
+                            /><label for="moqp">MoQ-Subscribe</label>
+                            <a href="https://crates.io/crates/moqs"
+                                ><img
+                                    src="https://img.shields.io/crates/v/moqs.svg" /></a
+                            ><br />
+                            <input
+                                type="checkbox"
+                                id="moqt"
+                                name="moqt"
+                                disabled="disabled"
+                            /><label for="moqp">MoQ-Transport</label>
+                            <a href="https://crates.io/crates/moqt"
+                                ><img
+                                    src="https://img.shields.io/crates/v/moqt.svg"
+                            /></a>
+                        </p>
+                    </div>
+                    <hr />
+                    <span class="tag is-info is-rounded">
+                        <b>Contact Us:&nbsp;&nbsp;admin&nbsp;</b
+                        ><img src="./res/at.png" width="20" height="20" /><b
+                            >&nbsp;moq.rs</b
+                        >
+                    </span>
+                </article>
+            </div>
+        </dev>
+        <div class="container has-text-centered">
+            <img src="./res/animated_ferris_white.gif" />
         </div>
-        <hr>
-        <span class="tag is-info is-rounded">
-          <b>Contact Us:&nbsp;&nbsp;admin&nbsp;</b><img src="./res/at.png" width="20" height="20"><b>&nbsp;moq.rs</b>
-        </span>
-      </article>
-    </div>
-  </dev>
-  <div class="container has-text-centered">
-      <img src="./res/animated_ferris_white.gif">
-  </div>
-</body>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9BHZLCX8S4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    </body>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-9BHZLCX8S4"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-  gtag('config', 'G-9BHZLCX8S4');
-</script>
+        gtag("config", "G-9BHZLCX8S4");
+    </script>
 </html>
